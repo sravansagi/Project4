@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -33,6 +36,13 @@ public class MainActivityFragment extends Fragment {
                 MainActivityFragment.showToast(getContext());
             }
         });
+
+        AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("6C21B0458E3BA016232450AFD157E6C0")
+                .build();
+        mAdView.loadAd(adRequest);
         return rootView;
     }
 
