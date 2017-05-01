@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "143236984471",
+    "firebase_url": "https://buildbigger-768f3.firebaseio.com",
+    "project_id": "buildbigger-768f3",
+    "storage_bucket": "buildbigger-768f3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143236984471:android:775ab925c11ef143",
+        "android_client_info": {
+          "package_name": "com.sravan.and.buildbigger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "143236984471-g489oasb9cld1osf4v9ooifcteepggfp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCU_6XcHcnOme9R2SvagECGKxbwA5YPacM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
