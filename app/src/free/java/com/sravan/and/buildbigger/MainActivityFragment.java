@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.sravan.and.jokelib.Jokes;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,6 +48,7 @@ public class MainActivityFragment extends Fragment {
     }
 
     public static void showToast(Context content) {
-        Toast.makeText( content , "Free Version", Toast.LENGTH_SHORT).show();
+        Jokes jokes = new Jokes();
+        Toast.makeText( content , jokes.getJoke() , Toast.LENGTH_SHORT).show();
     }
 }
