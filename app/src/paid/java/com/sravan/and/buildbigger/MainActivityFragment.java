@@ -1,6 +1,7 @@
 package com.sravan.and.buildbigger;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.sravan.and.jokelib.Jokes;
+import com.sravan.and.jokeviewlib.MainActivityJokeView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,15 +34,14 @@ public class MainActivityFragment extends Fragment {
             buttonJoke.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MainActivityFragment.showToast(getContext());
+
+                    Jokes jokes = new Jokes();
+                    Intent intent = new Intent(getContext(), MainActivityJokeView.class);
+                    intent.putExtra(Intent.EXTRA_TEXT, jokes.getJoke());
+                    startActivity(intent);
                 }
             });
             return rootView;
         }
-    }
-
-    public static void showToast(Context content) {
-        Jokes jokes = new Jokes();
-        Toast.makeText( content , jokes.getJoke() , Toast.LENGTH_SHORT).show();
     }
 }

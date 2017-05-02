@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.sravan.and.buildbigger.MainActivityFragment"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_main_jokeview">
 
     <TextView
         android:id="@+id/textView_jokes"
