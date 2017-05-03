@@ -43,6 +43,9 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     freeCompile 'com.google.firebase:firebase-ads:10.2.4'
     compile project(path: ':backend', configuration: 'android-endpoints')
+    compile('com.google.api-client:google-api-client-android:1.22.0') {
+        exclude module: 'httpclient'
+    }
 }
 
 

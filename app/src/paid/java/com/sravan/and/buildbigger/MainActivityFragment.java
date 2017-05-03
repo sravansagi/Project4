@@ -34,11 +34,7 @@ public class MainActivityFragment extends Fragment {
             buttonJoke.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    Jokes jokes = new Jokes();
-                    Intent intent = new Intent(getContext(), MainActivityJokeView.class);
-                    intent.putExtra(Intent.EXTRA_TEXT, jokes.getJoke());
-                    startActivity(intent);
+                    new EndpointsAsyncTask().execute(getActivity());
                 }
             });
             return rootView;
