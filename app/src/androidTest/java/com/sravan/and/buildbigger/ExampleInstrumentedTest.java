@@ -7,6 +7,8 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.concurrent.ExecutionException;
+
 import static org.junit.Assert.*;
 
 /**
@@ -22,5 +24,23 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("com.sravan.and.buildbigger", appContext.getPackageName());
+    }
+    @Test
+    public void endPointAsyncTaskTest(){
+        Context appContext = InstrumentationRegistry.getTargetContext();
+        EndpointsAsyncTask endpointsAsyncTask = new EndpointsAsyncTask();
+        endpointsAsyncTask.execute(appContext);
+        String result = null;
+        try {
+            result = endpointsAsyncTask.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        assertTrue("joke is null", result != null);
+        assertTrue("joke is empty", !result.isEmpty());
+
     }
 }
