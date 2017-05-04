@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
-public class ExampleInstrumentedTest {
+public class ExampleInstrumentedTest implements EndpointsAsyncTask.Callback{
     @Test
     public void useAppContext() throws Exception {
         // Context of the app under test.
@@ -28,7 +28,7 @@ public class ExampleInstrumentedTest {
     @Test
     public void endPointAsyncTaskTest(){
         Context appContext = InstrumentationRegistry.getTargetContext();
-        EndpointsAsyncTask endpointsAsyncTask = new EndpointsAsyncTask();
+        EndpointsAsyncTask endpointsAsyncTask = new EndpointsAsyncTask(this);
         endpointsAsyncTask.execute(appContext);
         String result = null;
         try {
@@ -41,6 +41,11 @@ public class ExampleInstrumentedTest {
 
         assertTrue("joke is null", result != null);
         assertTrue("joke is empty", !result.isEmpty());
+
+    }
+
+    @Override
+    public void done(String result) {
 
     }
 }

@@ -7,10 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.sravan.and.jokelib.Jokes;
 import com.sravan.and.jokeviewlib.MainActivityJokeView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,10 +18,12 @@ import butterknife.ButterKnife;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
+public class MainActivityFragment extends Fragment implements EndpointsAsyncTask.Callback {
 
     @BindView(R.id.button_joke)
     Button buttonJoke;
+    @BindView(R.id.joke_progressbar)
+    ProgressBar jokeProgress;
     public MainActivityFragment() {
     }
 
@@ -33,16 +35,23 @@ public class MainActivityFragment extends Fragment {
         buttonJoke.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new EndpointsAsyncTask().execute(getActivity());
+                getJoke();
             }
         });
 
-        AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice("6C21B0458E3BA016232450AFD157E6C0")
-                .build();
-        mAdView.loadAd(adRequest);
         return rootView;
+    }
+
+    private void getJoke() {
+        jokeProgress.setVisibility(View.VISIBLE);
+        new EndpointsAsyncTask(this).execute(getActivity());
+    }
+
+    @Override
+    public void done(String result) {
+        jokeProgress.setVisibility(View.GONE);
+        Intent intent = new Intent(getActivity(), MainActivityJokeView.class);
+        intent.putExtra(Intent.EXTRA_TEXT, result );
+        startActivity(intent);
     }
 }

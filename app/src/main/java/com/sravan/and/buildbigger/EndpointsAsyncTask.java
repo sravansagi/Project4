@@ -23,9 +23,20 @@ import java.io.IOException;
 class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
     private static MyApi myApiService = null;
     private Context context;
+    private Callback callback;
+
+    public EndpointsAsyncTask(Callback callback) {
+        this.callback = callback;
+    }
 
     @Override
     protected String doInBackground(Context... params) {
+        // We are make the thread to wait to view the progress bar
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         if(myApiService == null) {  // Only do this once
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
@@ -55,8 +66,10 @@ class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        Intent intent = new Intent(context, MainActivityJokeView.class);
-        intent.putExtra(Intent.EXTRA_TEXT, result );
-        context.startActivity(intent);
+        callback.done(result);
+    }
+
+    public interface Callback{
+        void done(String result);
     }
 }
